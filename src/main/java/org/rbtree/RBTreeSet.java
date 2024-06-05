@@ -23,11 +23,16 @@ public class RBTreeSet<T extends Comparable<T>> implements Set<T> {
     @Override
     public boolean add(T t) {
         if (this.treeRoot == null) {
-            this.treeRoot = new RBTreeNode<>(t, false);
+            this.treeRoot = new RBTreeNode<>(t, false, null);
             return true;
         }
 
-        return RBTreeLogic.recInsert(this.treeRoot, t);
+        boolean inserted = RBTreeLogic.recInsert(this.treeRoot, t);
+        if (!inserted) return false;
+
+        // rotations, checking, etc
+
+        return true;
     }
 
     @Override

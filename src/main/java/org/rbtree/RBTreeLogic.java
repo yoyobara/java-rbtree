@@ -1,6 +1,7 @@
 package org.rbtree;
 
 public class RBTreeLogic {
+
     /*
     a recursive function to calculate the size of the tree.
      */
@@ -39,14 +40,14 @@ public class RBTreeLogic {
 
         if (cmp > 0) {
             if (root.right == null) {
-                root.right = new RBTreeNode<>(value, true);
+                root.right = new RBTreeNode<>(value, true, root);
                 return true;
             }
 
             return recInsert(root.right, value);
         } else {
             if (root.left == null) {
-                root.left = new RBTreeNode<>(value, true);
+                root.left = new RBTreeNode<>(value, true, root);
                 return true;
             }
 
