@@ -1,14 +1,12 @@
 package org.rbtree;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class RBTreeSet<T extends Comparable<T>> implements Set<T> {
     private RBTreeNode<T> treeRoot;
 
     @Override
     public int size() {
-        return RBTreeLogic.calculateSize(this.treeRoot);
+        return RBTreeLogic.recSize(this.treeRoot);
     }
 
     @Override
@@ -18,7 +16,18 @@ public class RBTreeSet<T extends Comparable<T>> implements Set<T> {
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        T casted = (T) o;
+        return RBTreeLogic.recContains(this.treeRoot, casted);
+    }
+
+    @Override
+    public boolean add(T t) {
+        if (this.treeRoot == null) {
+            this.treeRoot = new RBTreeNode<>(t, false);
+            return true;
+        }
+
+        return RBTreeLogic.recInsert(this.treeRoot, t);
     }
 
     @Override
@@ -34,11 +43,6 @@ public class RBTreeSet<T extends Comparable<T>> implements Set<T> {
     @Override
     public <T1> T1[] toArray(T1[] a) {
         return null;
-    }
-
-    @Override
-    public boolean add(T t) {
-        return false;
     }
 
     @Override
