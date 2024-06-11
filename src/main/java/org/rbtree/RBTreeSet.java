@@ -27,10 +27,11 @@ public class RBTreeSet<T extends Comparable<T>> implements Set<T> {
             return true;
         }
 
-        boolean inserted = RBTreeLogic.recInsert(this.treeRoot, t);
-        if (!inserted) return false;
+        RBTreeNode<T> inserted = RBTreeLogic.recInsert(this.treeRoot, t);
+        if (inserted == null) return false;
 
         // rotations, checking, etc
+        // TODO
 
         return true;
     }

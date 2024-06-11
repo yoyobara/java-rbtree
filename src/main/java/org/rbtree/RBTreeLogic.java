@@ -32,23 +32,24 @@ public class RBTreeLogic {
     }
 
     // given root is not null...
-    public static<T extends Comparable<T>> boolean recInsert(RBTreeNode<T> root, T value) {
+    // inserts new element and returns the inserted node. if exists already return null
+    public static<T extends Comparable<T>> RBTreeNode<T> recInsert(RBTreeNode<T> root, T value) {
         int cmp = value.compareTo(root.value);
 
         if (cmp == 0)
-            return false;
+            return null;
 
         if (cmp > 0) {
             if (root.right == null) {
                 root.right = new RBTreeNode<>(value, true, root);
-                return true;
+                return root.right;
             }
 
             return recInsert(root.right, value);
         } else {
             if (root.left == null) {
                 root.left = new RBTreeNode<>(value, true, root);
-                return true;
+                return root.left;
             }
 
             return recInsert(root.left, value);

@@ -24,4 +24,20 @@ public class RBTreeNode<T> {
             return grandparent.left;
         }
     }
+
+    boolean isRightChild() {
+        return this.parent.right == this;
+    }
+
+    boolean isLeftChild() {
+        return !isRightChild();
+    }
+
+    void setRed() {
+        this.isRed = true;
+    }
+
+    void setBlack() {
+        this.isRed = false;
+    }
 }
